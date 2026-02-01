@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aks-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aks-api
+  template:
+    metadata:
+      labels:
+        app: aks-api
+    spec:
+      containers:
+      - name: api
+        image: myacrterraform123.azurecr.io/aks-api:v1
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+          limits:
+            cpu: "500m"
